@@ -1,7 +1,7 @@
 # ""DEAR PRO PEOPLE,  DON'T REMOVE & CHANGE THIS LINE
 # TG :- @Abishnoi1M
-#     MY ALL BOTS :- Abishnoi_bots
-#     GITHUB :- KingAbishnoi ""
+#     MY ALL BOTS :- Fuck
+#     GITHUB :- Fuck ""
 
 from platform import python_version as y
 
@@ -22,7 +22,7 @@ async def repo(_, message):
         photo=ABISHNOIX,
         caption=f"""✨ **ʜᴇʏ {message.from_user.mention},**
 
-**ᴏᴡɴᴇʀ  : [𝐀ʙɪꜱʜɴᴏɪ](https://t.me/Abishnoi1M)**
+**ᴏᴡɴᴇʀ  : [𝗟𝗘𝗩𝗜𝗜](https://t.me/WraithOF_KabiR)**
 **ᴘʏᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ :** `{y()}`
 **ʟɪʙʀᴀʀʏ ᴠᴇʀꜱɪᴏɴ :** `{o}`
 **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ :** `{s}`
@@ -33,10 +33,10 @@ async def repo(_, message):
             [
                 [
                     InlineKeyboardButton(
-                        "•ᴍᴜꜱɪᴄ•", url="https://github.com/Abishnoi69/AsuXMusic"
+                        "•ᴍᴜꜱɪᴄ•", url="https://youtu.be/Z2Pp9VCdKoY"
                     ),
                     InlineKeyboardButton(
-                        "•ʀᴏʙᴏᴠ1•", url="https://github.com/Abishnoi69/ExonRobot"
+                        "•ʀᴏʙᴏᴠ1•", url="https://youtu.be/Z2Pp9VCdKoY"
                     ),
                 ]
             ]
