@@ -1,20 +1,3 @@
-Skip to content
-Yonko9770
-/
-AkenoBot
-Public
-forked from YeahKakashi/Kakashibot
-Code
-Pull requests
-Actions
-Projects
-Security
-Insights
-AkenoBot/Shikimori/modules/image_reverse_search.py
-@Yonko9770
-Yonko9770 Create image_reverse_search.py
- 1 contributor
-221 lines (189 sloc)  6.65 KB
 
 import os
 import re
@@ -120,6 +103,3 @@ def reverse(update, context):
         }
         response = requests.post(searchUrl, files=multipart, allow_redirects=False)
         fetchUrl = response.headers["Location"]
-
-        if response != 400:
-            xx = context.bot.send_message(
