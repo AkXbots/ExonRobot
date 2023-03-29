@@ -103,3 +103,118 @@ def reverse(update, context):
         }
         response = requests.post(searchUrl, files=multipart, allow_redirects=False)
         fetchUrl = response.headers["Location"]
+if response != 400:
+            xx = context.bot.send_message(
+                chat_id,
+                "Image was successfully uploaded to Google."
+                "\nParsing source now. Maybe.",
+                reply_to_message_id=rtmid,
+            )
+        else:
+            xx = context.bot.send_message(
+                chat_id, "Google told me to go away.", reply_to_message_id=rtmid
+            )
+            return
+
+        os.remove(imagename)
+        match = ParseSauce(fetchUrl + "&hl=en")
+        guess = match["best_guess"]
+        if match["override"] and match["override"] != "":
+            imgspage = match["override"]
+        else:
+            imgspage = match["similar_images"]
+
+        if guess and imgspage:
+            xx.edit_text(
+                f"[{guess}]({fetchUrl})\nLooking for images...",
+                parse_mode="Markdown",
+                disable_web_page_preview=True,
+            )
+        else:
+            xx.edit_text("Couldn't find anything.")
+            return
+
+        images = scam(imgspage, lim)
+        if len(images) == 0:
+            xx.edit_text(
+                f"[{guess}]({fetchUrl})\n\n[Visually similar images]({imgspage})",
+                parse_mode="Markdown",
+                disable_web_page_preview=True,
+            )
+            return
+
+        imglinks = []
+        for link in images:
+            lmao = InputMediaPhoto(media=str(link))
+            imglinks.append(lmao)
+
+        context.bot.send_media_group(
+            chat_id=chat_id, media=imglinks, reply_to_message_id=rtmid
+        )
+        xx.edit_text(
+            f"[{guess}]({fetchUrl})\n\n[Visually similar images]({imgspage})",
+            parse_mode="Markdown",
+            disable_web_page_preview=True,
+        )
+    except TelegramError as e:
+        print(e)
+    except Exception as exception:
+        print(exception)
+
+
+def ParseSauce(googleurl):
+    source = opener.open(googleurl).read()
+    soup = BeautifulSoup(source, "html.parser")
+
+    results = {"similar_images": "", "override": "", "best_guess": ""}
+
+    try:
+        for bess in soup.findAll("a", {"class": "PBorbe"}):
+            url = "https://www.google.com" + bess.get("href")
+            results["override"] = url
+    except BaseException:
+        pass
+
+    for similar_image in soup.findAll("input", {"class": "gLFyf"}):
+        url = "https://www.google.com/search?tbm=isch&q=" + urllib.parse.quote_plus(
+            similar_image.get("value")
+        )
+        results["similar_images"] = url
+
+    for best_guess in soup.findAll("div", attrs={"class": "r5a77d"}):
+        results["best_guess"] = best_guess.get_text()
+
+    return results
+
+
+def scam(imgspage, lim):
+    """Parse/Scrape the HTML code for the info we want."""
+
+    single = opener.open(imgspage).read()
+    decoded = single.decode("utf-8")
+    if int(lim) > 10:
+        lim = 10
+
+    imglinks = []
+    counter = 0
+
+    pattern = r"^,\[\"(.*[.png|.jpg|.jpeg])\",[0-9]+,[0-9]+\]$"
+    oboi = re.findall(pattern, decoded, re.I | re.M)
+
+    for imglink in oboi:
+        counter += 1
+        imglinks.append(imglink)
+        if counter >= int(lim):
+            break
+
+    return imglinks
+
+
+REVERSE_HANDLER = DisableAbleCommandHandler(
+    ["google", "reverse", "grs", "p", "pp", "name"],
+    reverse,
+    pass_args=True,
+    run_async=True,
+)
+
+dispatcher.add_handler(REVERSE_HANDLER)
