@@ -156,7 +156,7 @@ def ABG_about_callback(update, context):
                             text="sᴜᴘᴘᴏʀᴛ", url=f"t.me/{SUPPORT_CHAT}"
                         ),
                         InlineKeyboardButton(
-                            text="ᴜᴘᴅᴀᴛᴇs", url="https://t.me/Abishnoi_bots"
+                            text="ᴜᴘᴅᴀᴛᴇs", url="https://t.me/Xd_Bot_Support"
                         ),
                     ],
                     [
@@ -188,7 +188,7 @@ def ABG_about_callback(update, context):
                     ],
                     [
                         InlineKeyboardButton(
-                            text="ᴀʙɪsʜɴᴏɪ", url="https://t.me/Abishnoi1M"
+                            text="Zᴇᴜs xD", url="https://t.me/Zeus_Xd_Afk"
                         ),
                         InlineKeyboardButton(
                             text="ᴄʜᴀᴛ", url=f"https://t.me/{SUPPORT_CHAT}"
@@ -231,9 +231,8 @@ def Source_about_callback(update, context):
                         InlineKeyboardButton(text="🖥️", callback_data="help_back"),
                     ],
                     [
-                        InlineKeyboardButton(
-                            text="ꜱᴏᴜʀᴄᴇ",
-                            url="https://github.com/Abishnoi69/ExonRobot",  # DON'T CHANGE
+                        
+                           
                         ),
                     ],
                 ]
