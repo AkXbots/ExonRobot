@@ -27,6 +27,7 @@ class Config(object):
         DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://")
 
 
+
 class Production(Config):
     LOGGER = True
 
