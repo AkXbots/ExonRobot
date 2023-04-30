@@ -120,7 +120,6 @@ BL_CHATS = []
 SPAMMERS = []
 STRING_SESSION = Config.STRING_SESSION
 
-
 REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
 try:
     REDIS.ping()
